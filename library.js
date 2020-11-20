@@ -14,17 +14,28 @@ function addBookToLibrary() {
 }
 
 function updateBookTiles() {
+	// If we have no books, set it to the empty page
+	if (library.length == 0) {
+		document.getElementById("card-container").style.display = "none";
+		document.getElementById("empty").style.display = "flex";
+		return;
+	}
+	
+	document.getElementById("card-container").style.display = "flex";
+	document.getElementById("empty").style.display = "none";
+
 	let container = document.getElementById("card-container");
 	container.textContent = "";
 	for (let i = 0; i < library.length; i++) {
-		container.appendChild(createCardForBook(library[i]));
+		container.appendChild(createCardForBook(library[i], i));
 	}
 }
 
-function createCardForBook(book) {
+function createCardForBook(book, cardId) {
 	if ('content' in document.createElement('template')){
 		let template = document.querySelector('#book-card-template');
 		let card = template.content.cloneNode(true);
+		card.querySelector('.book-card').setAttribute('data-bookId', cardId);//.setAttribute('data-bookId', +cardId);
 		return card;
 	}
 	else {

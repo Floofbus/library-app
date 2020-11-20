@@ -148,30 +148,31 @@ html, body {
 }
 
 .book-card {
-	background-color: gray;
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-template-rows: 4fr 1fr;
+	grid-template-rows: 4fr 50px;
 	overflow: hidden;
-	min-width: 400px;
-	max-width: 400px;
+	min-width: 300px;
+	max-width: 300px;
 	min-height: 400px;
 	max-height: 100px;
 	margin: 5px;
 	border-radius: 5px;
+	background: url('https://img0-placeit-net.s3-accelerate.amazonaws.com/uploads/stage/stage_image/22739/optimized_large_thumb_children-stories-book-cover-541__1_.jpg');
+	background-position: center;
+	background-size: 100%;
 }
 
 .book-card-top-container {
 	grid-row: 1/2;
 	height: 100%;
 	width: 100%;
-	background: pink;
 }
 
 .book-card-button-container {
 	grid-row: 2/3;
 	display: grid;
-	grid-template-columns: 1fr 1fr 3fr;
+	grid-template-columns: 50px 50px 1fr;
 	grid-template-rows: 1fr;
 }
 
