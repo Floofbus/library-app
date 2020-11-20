@@ -158,9 +158,14 @@ html, body {
 	max-height: 100px;
 	margin: 5px;
 	border-radius: 5px;
-	background: url('https://img0-placeit-net.s3-accelerate.amazonaws.com/uploads/stage/stage_image/22739/optimized_large_thumb_children-stories-book-cover-541__1_.jpg');
+	background: url('https://marketplace.canva.com/EAD7WWWtKSQ/1/0/251w/canva-purple-and-red-leaves-illustration-children%27s-book-cover-hNI7HYnNVQQ.jpg');
 	background-position: center;
 	background-size: 100%;
+	transition: box-shadow 0.4s ease;
+}
+
+.book-card:hover {
+	box-shadow: inset 10px 10px 30px rgba(0, 0, 0, 0.5), inset -10px -60px 30px rgba(0, 0, 0, 0.5);
 }
 
 .book-card-top-container {

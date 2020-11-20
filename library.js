@@ -35,7 +35,7 @@ function createCardForBook(book, cardId) {
 	if ('content' in document.createElement('template')){
 		let template = document.querySelector('#book-card-template');
 		let card = template.content.cloneNode(true);
-		card.querySelector('.book-card').setAttribute('data-bookId', cardId);//.setAttribute('data-bookId', +cardId);
+		card.querySelector('.book-card').setAttribute('data-bookId', cardId);
 		return card;
 	}
 	else {
@@ -43,6 +43,9 @@ function createCardForBook(book, cardId) {
 		return document.createElement('p');
 	}
 }
+
+// Setup
+document.querySelector('#add-book-button').addEventListener('click', () => {alert("ohaio!")});
 
 addBookToLibrary();
 addBookToLibrary();
