@@ -17,17 +17,20 @@ function updateBookTiles() {
 	let container = document.getElementById("card-container");
 	container.textContent = "";
 	for (let i = 0; i < library.length; i++) {
-		let card = document.createElement('div');
-		card.classList.add("book-card");
-		card.textContent = `${library[i].title} by ${library[i].author}\nIt has ${library[i].pages} and has ${library[i].read ? "been read." : "not been read."}`;
-		container.appendChild(card);
+		container.appendChild(createCardForBook(library[i]));
 	}
 }
 
-function createBookCard(book) {
-	let card = document.createElement('div')
-	card.classList.add("book-card");
-
+function createCardForBook(book) {
+	if ('content' in document.createElement('template')){
+		let template = document.querySelector('#book-card-template');
+		let card = template.content.cloneNode(true);
+		return card;
+	}
+	else {
+		// IE specific implementation for templates
+		return document.createElement('p');
+	}
 }
 
 addBookToLibrary();
@@ -37,3 +40,4 @@ addBookToLibrary();
 addBookToLibrary();
 addBookToLibrary();
 addBookToLibrary();
+updateBookTiles();

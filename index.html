@@ -40,24 +40,22 @@
 					</div>
 				</form>
 			</div>
-			
-			<div id="card-container">
-				<div class="book-card">
-					<div class="book-card-top-container">
-						
-					</div>
-					<div class="book-card-button-container">
-						<div class="book-card-edit card-button">
-							<!--Put an edit icon here-->
-						</div>
-						<div class="book-card-remove card-button">
 
-						</div>
-						<div class="book-card-read card-button">
-							<p>I read this!</p>
+			<div id="card-container">
+
+				<template id="book-card-template">
+					<div class="book-card">
+						<div class="book-card-top-container"></div>
+						<div class="book-card-button-container">
+							<div class="book-card-edit card-button"></div>
+							<div class="book-card-remove card-button"></div>
+							<div class="book-card-read card-button">
+								<p>I read this!</p>
+							</div>
 						</div>
 					</div>
-				</div>
+				</template>
+
 			</div>
 			<div id="empty">
 				<h2>Oops!</h2>
@@ -66,5 +64,17 @@
 		</div>
 		<div id="footer"><p>a</p></div>
 	</body>
+	<template id="book-card-template">
+		<div class="book-card">
+			<div class="book-card-top-container"></div>
+			<div class="book-card-button-container">
+				<div class="book-card-edit card-button"></div>
+				<div class="book-card-remove card-button"></div>
+				<div class="book-card-read card-button">
+					<p>I read this!</p>
+				</div>
+			</div>
+		</div>
+	</template>
 	<script src="./library.js"></script>
 </html>
