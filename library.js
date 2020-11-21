@@ -45,6 +45,9 @@ function createCardForBook(book, bookId) {
 	}
 }
 
+function demo() {
+}
+
 // Setup
 document.querySelector('#add-book-button').addEventListener('click', addBookToLibrary);
 
