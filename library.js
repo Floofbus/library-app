@@ -11,6 +11,7 @@ function Book(title, author, pages, read, cover = "notfound.png") {
 function addBookToLibrary() {
 	// Display a popup menu to add a book
 	library.push(new Book("Wow, a book!", "Jobel", "42069", false));
+	updateBookTiles();
 }
 
 function updateBookTiles() {
@@ -31,11 +32,11 @@ function updateBookTiles() {
 	}
 }
 
-function createCardForBook(book, cardId) {
+function createCardForBook(book, bookId) {
 	if ('content' in document.createElement('template')){
 		let template = document.querySelector('#book-card-template');
 		let card = template.content.cloneNode(true);
-		card.querySelector('.book-card').setAttribute('data-bookId', cardId);
+		card.querySelector('.book-card').setAttribute('data-bookId', bookId);
 		return card;
 	}
 	else {
@@ -45,7 +46,7 @@ function createCardForBook(book, cardId) {
 }
 
 // Setup
-document.querySelector('#add-book-button').addEventListener('click', () => {alert("ohaio!")});
+document.querySelector('#add-book-button').addEventListener('click', addBookToLibrary);
 
 addBookToLibrary();
 addBookToLibrary();
