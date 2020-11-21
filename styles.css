@@ -158,7 +158,6 @@ html, body {
 	max-height: 100px;
 	margin: 5px;
 	border-radius: 5px;
-	background: url('https://prodimage.images-bn.com/pimages/9780156030304_p0_v3_s1200x630.jpg');
 	background-position: center;
 	background-size: 100%;
 	transition: box-shadow 0.4s ease;
@@ -183,12 +182,16 @@ html, body {
 }
 
 .book-card-top-container p {
-	text-shadow: 2px 1px rgba(0, 0, 0, 0.8);
+	text-shadow: 2px 1px 2px rgba(0, 0, 0, 0.8);
 	font-weight: 200;
 }
 
 .book-card-author {
 	font-size: 18px;
+}
+
+.book-card-pagenumber {
+	font-size: 16px;
 }
 
 .book-card-button-container {
