@@ -84,7 +84,8 @@ function editBook(event) {
 }
 
 function removeBook(event) {
-
+	library.splice(event.target.getAttribute('data-bookId'), 1);
+	updateBookTiles();
 }
 
 function toggleBookRead(event) {
