@@ -144,7 +144,7 @@ html, body {
 
 #card-container {
 	display: flex;
-	justify-content: center;
+	width: 100%;
 	flex-wrap: wrap;
 }
 
@@ -159,7 +159,6 @@ html, body {
 	max-height: 400px;
 	margin: 5px;
 	border-radius: 5px;
-	background-position: center;
 	transition: box-shadow 0.4s ease;
 }
 
@@ -182,7 +181,7 @@ html, body {
 }
 
 .book-card-top-container p {
-	text-shadow: 2px 1px 2px rgba(0, 0, 0, 0.8);
+	text-shadow: 2px 1px 3px rgba(0, 0, 0, 1);
 	font-weight: 200;
 }
 

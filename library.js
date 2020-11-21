@@ -1,6 +1,6 @@
 let library = [];
 
-function Book(title, author, pages, read, cover = "notfound.png", category = "") {
+function Book(title, author, pages, read, cover = "", category = "") {
 	this.title = title,
 	this.author = author,
 	this.pages = pages,
@@ -52,8 +52,16 @@ function createCardForBook(book, bookId) {
 		readButton.addEventListener('click', toggleBookRead);
 
 		// Set book info
-		card.querySelector('.book-card').style['background'] = `url(${book.cover})`;
-		card.querySelector('.book-card').style['background-size'] = "100%";
+		if (book.cover == "") {
+			card.querySelector('.book-card').style['background'] = `url("pages-2-xxl.png"), tan`;
+			card.querySelector('.book-card').style['background-size'] = "80%";
+			card.querySelector('.book-card').style['background-repeat'] = "no-repeat";
+			card.querySelector('.book-card').style['background-position'] = "center";
+		}
+		else {
+			card.querySelector('.book-card').style['background'] = `url(${book.cover})`;
+			card.querySelector('.book-card').style['background-size'] = "100%";
+		}
 		card.querySelector('.book-card-title').textContent = book.title;
 		card.querySelector('.book-card-author').textContent = book.author;
 		card.querySelector('.book-card-pagenumber').textContent = `${book.pages} Pages`;
