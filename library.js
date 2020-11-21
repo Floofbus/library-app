@@ -84,8 +84,12 @@ function editBook(event) {
 }
 
 function removeBook(event) {
-	library.splice(event.target.getAttribute('data-bookId'), 1);
-	updateBookTiles();
+	if (confirm("Are you sure you want to remove " + 
+				library[event.target.getAttribute('data-bookId')].title + 
+				" from your library?")) {
+		library.splice(event.target.getAttribute('data-bookId'), 1);
+		updateBookTiles();
+	}
 }
 
 function toggleBookRead(event) {
