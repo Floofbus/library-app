@@ -37,14 +37,32 @@ function createCardForBook(book, bookId) {
 	if ('content' in document.createElement('template')){
 		let template = document.querySelector('#book-card-template');
 		let card = template.content.cloneNode(true);
-		card.querySelector('.book-card').setAttribute('data-bookId', bookId);
-		// Set background
+
+		// Set up event listeners
+		let editButton = card.querySelector('.book-card-edit');
+		editButton.setAttribute('data-bookId', bookId);
+		editButton.addEventListener('click', editBook);
+
+		let removeButton = card.querySelector('.book-card-remove');
+		removeButton.setAttribute('data-bookId', bookId);
+		removeButton.addEventListener('click', removeBook);
+
+		let readButton = card.querySelector('.book-card-read')
+		readButton.setAttribute('data-bookId', bookId);
+		readButton.addEventListener('click', toggleBookRead);
+
+		// Set book info
 		card.querySelector('.book-card').style['background'] = `url(${book.cover})`;
 		card.querySelector('.book-card').style['background-size'] = "100%";
-		// Set Title, author, and page count
 		card.querySelector('.book-card-title').textContent = book.title;
 		card.querySelector('.book-card-author').textContent = book.author;
 		card.querySelector('.book-card-pagenumber').textContent = `${book.pages} Pages`;
+
+		card.querySelector('.book-card-read p').textContent = (book.read) ? "Complete" : "Mark as read";
+		if (book.read) card.querySelector('.book-card-read').classList.toggle('book-card-read-complete');
+
+
+
 		return card;
 	}
 	else {
@@ -53,15 +71,31 @@ function createCardForBook(book, bookId) {
 	}
 }
 
+function editBook(event) {
+	alert(event.target.getAttribute('data-bookId'));
+}
+
+function removeBook(event) {
+
+}
+
+function toggleBookRead(event) {
+	library[event.currentTarget.getAttribute('data-bookId')].read = !library[event.currentTarget.getAttribute('data-bookId')].read;
+	updateBookTiles();
+}
+
+
 function demo() {
-	library.push(new Book("Flowers for Algernon", "Daniel Keyes", 311, false,
+	library.push(new Book("Flowers for Algernon", "Daniel Keyes", 311, true,
 						  "https://images-na.ssl-images-amazon.com/images/I/41gvkhScVBL.jpg", "Sci-fi"));
 	library.push(new Book("Digital Design", "Morris Mano", 516, false,
 						  "https://images-na.ssl-images-amazon.com/images/I/51RX57XZ83L._SX360_BO1,204,203,200_.jpg", "Textbook"));
 	library.push(new Book("Tonal Harmony with an Introduction to Twentieth-Century Music", "Stefan Kostka, Dorothy Payne", 736, false,
 						  "https://images-na.ssl-images-amazon.com/images/I/41b--In4X3L.jpg", "Textbook"));
 	library.push(new Book("The Complete Idiot's Guide to Music Composition", "Michael Miller", 264, false,
-						  "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1386924417l/12510.jpg", "Textbook"))
+						  "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1386924417l/12510.jpg", "Textbook"));
+	library.push(new Book("C++ Plus Data Structures", "Nell Dale", 816, false,
+						  "", "Textbook"));
 }
 
 // Setup

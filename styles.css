@@ -144,22 +144,22 @@ html, body {
 
 #card-container {
 	display: flex;
+	justify-content: center;
 	flex-wrap: wrap;
 }
 
 .book-card {
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-template-rows: 4fr 50px;
+	grid-template-rows: 1fr 50px;
 	overflow: hidden;
 	min-width: 300px;
 	max-width: 300px;
 	min-height: 400px;
-	max-height: 100px;
+	max-height: 400px;
 	margin: 5px;
 	border-radius: 5px;
 	background-position: center;
-	background-size: 100%;
 	transition: box-shadow 0.4s ease;
 }
 
@@ -198,7 +198,7 @@ html, body {
 	grid-row: 2/3;
 	display: grid;
 	grid-template-columns: 50px 50px 1fr;
-	grid-template-rows: 1fr;
+	grid-template-rows: 50px;
 }
 
 .card-button {
@@ -208,15 +208,17 @@ html, body {
 }
 
 .book-card-edit {
-	background: #808080e8;
-}
-
-.book-card-edit img, .book-card-remove img {
-	width: 50%;
+	background: url("edit-xxl.png"), #808080e8;
+	background-size: 50%;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 .book-card-remove {
-	background: #DF0000e8;
+	background: url("trash-2-xxl.png"), #DF0000e8;
+	background-size: 50%;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 .book-card-read {
@@ -225,6 +227,11 @@ html, body {
 	font-size: 22px;
 	font-weight: 200;
 	background: #3700d0e8;
+	user-select: none;
+}
+
+.book-card-read-complete {
+	background: #00b600e8;
 }
 
 #empty {
@@ -243,4 +250,8 @@ html, body {
 #empty p {
 	font-size: 18px;
 	color: gray;
+}
+
+.hidden {
+	display: none;
 }
