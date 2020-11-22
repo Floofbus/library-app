@@ -1,4 +1,4 @@
-let library = [];
+let library = JSON.parse(localStorage.getItem('library') || "[]");
 let formOpen = false;
 
 function Book(title, author, pages, read, cover = "") {
@@ -30,6 +30,8 @@ function updateBookTiles() {
 	for (let i = 0; i < library.length; i++) {
 		container.appendChild(createCardForBook(library[i], i));
 	}
+	// Store updated info
+	localStorage.setItem('library', JSON.stringify(library));
 }
 
 function createCardForBook(book, bookId) {
@@ -58,8 +60,11 @@ function createCardForBook(book, bookId) {
 			card.querySelector('.book-card').style['background-position'] = "center";
 		}
 		else {
-			card.querySelector('.book-card').style['background'] = `url(${book.cover})`;
+			card.querySelector('.book-card').style['background'] = `url(${book.cover}), gray`;
 			card.querySelector('.book-card').style['background-size'] = "100%";
+			card.querySelector('.book-card').style['background-repeat'] = "no-repeat";
+
+
 		}
 		card.querySelector('.book-card-title').textContent = book.title;
 		card.querySelector('.book-card-author').textContent = book.author;
@@ -102,6 +107,8 @@ function toggleBookRead(event) {
 	else {
 		event.currentTarget.querySelector('p').textContent = "Mark as read";
 	}
+	// Store updated info
+	localStorage.setItem('library', JSON.stringify(library));
 }
 
 function openBookForm(bookNum = -1) {
@@ -172,10 +179,12 @@ function demo() {
 	library.push(new Book("The Complete Idiot's Guide to Music Composition", "Michael Miller", 264, false,
 						  "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1386924417l/12510.jpg"));
 	library.push(new Book("C++ Plus Data Structures", "Nell Dale", 816, false, ""));
+	updateBookTiles()
 }
 
 function setup() {
 	document.querySelector('#add-book-button').addEventListener('click', addBookToLibrary);
+	document.querySelector('#logo-container').addEventListener('click', demo);
 
 	document.querySelector('#form-cancel').addEventListener('click', closeBookForm);
 	document.querySelector('#form-submit').addEventListener('click', sumbitBookForm);
@@ -183,6 +192,4 @@ function setup() {
 }
 
 setup();
-
-demo();
 updateBookTiles();
