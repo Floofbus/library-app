@@ -157,11 +157,11 @@ html, body {
 }
 
 #form-cancel {
-	background: red;
+	background: #DF0000e8;
 }
 
 #form-submit {
-	background: green;
+	background: #00b600e8;
 }
 
 #footer {
