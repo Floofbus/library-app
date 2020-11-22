@@ -17,7 +17,7 @@
 		</div>
 		<div id="main-container">
 			
-			<div id="book-form">
+			<div id="book-form" class="hidden"> <!-- class="hidden" by default -->
 				<form>
 					<label for="title">Title:</label>
 					<input type="text" placeholder="Title" id="title" name="title" class="book-input"/>
@@ -34,9 +34,9 @@
 					</div>
 					<label for="url">URL to cover image (optional):</label>
 					<input type="text" placeholder="URL" id="url" name="url" class="book-input"/>
-					<div id="book-form-submit-tontainer">
-						<button id="cancel-button" class="book-form-button">Cancel</button>
-						<button id="submit-button" class="book-form-button">Submit</button>
+					<div id="book-form-button-container">
+						<div id="form-cancel" class="book-form-button"><p>Cancel</p></div>
+						<div id="form-submit" class="book-form-button"><p>Submit</p></div>
 					</div>
 				</form>
 			</div>

@@ -1,4 +1,5 @@
 let library = [];
+let formOpen = false;
 
 function Book(title, author, pages, read, cover = "") {
 	this.title = title,
@@ -10,8 +11,7 @@ function Book(title, author, pages, read, cover = "") {
 
 function addBookToLibrary() {
 	// Display a popup menu to add a book
-	library.push(new Book("Wow, a book!", "Jobel", "42069", false));
-	updateBookTiles();
+	openBookForm();
 }
 
 function updateBookTiles() {
@@ -80,7 +80,7 @@ function createCardForBook(book, bookId) {
 }
 
 function editBook(event) {
-	alert(event.target.getAttribute('data-bookId'));
+	openBookForm(event.currentTarget.getAttribute('data-bookId'));
 }
 
 function removeBook(event) {
@@ -96,7 +96,7 @@ function toggleBookRead(event) {
 	let book = library[event.currentTarget.getAttribute('data-bookId')];
 	book.read = !book.read;
 	event.currentTarget.classList.toggle('book-card-read-complete');
-	if (event.currentTarget.querySelector('p').textContent == "Mark as read") {
+	if (book.read) {
 		event.currentTarget.querySelector('p').textContent = "Complete";
 	}
 	else {
@@ -104,8 +104,62 @@ function toggleBookRead(event) {
 	}
 }
 
-function openBookForm(bookNum) {
+function openBookForm(bookNum = -1) {
+	if (formOpen) {
+		return;
+	}
+	formOpen = true;
 
+	document.querySelector('#book-form').classList.remove('hidden');
+	let form = document.querySelector('#book-form')
+	if (bookNum == -1) {
+		// New book
+		form.querySelector('#title').value = "";
+		form.querySelector('#author').value = "";
+		form.querySelector('#pages').value = "";
+		form.querySelector('#no').checked = true;
+		form.querySelector('#url').value = "";
+		form.querySelector('#form-submit').setAttribute('data-bookId', -1);
+	}
+	else {
+
+		form.querySelector('#title').value = library[bookNum].title;
+		form.querySelector('#author').value = library[bookNum].author;
+		form.querySelector('#pages').value = library[bookNum].pages;
+		form.querySelector((library[bookNum].read) ? '#yes' : '#no').checked = true;
+		form.querySelector('#url').value = library[bookNum].cover;
+		form.querySelector('#form-submit').setAttribute('data-bookId', bookNum);
+	}
+
+}
+
+function closeBookForm() {
+	if (formOpen) {
+		document.querySelector('#book-form').classList.add('hidden');
+		formOpen = false;
+	}
+}
+
+function sumbitBookForm(event) {
+	let form = document.querySelector('#book-form');
+	let bookNum = event.currentTarget.getAttribute('data-bookId')
+	if (bookNum == -1) {
+		library.push(new Book(form.querySelector('#title').value,
+							  form.querySelector('#author').value,
+							  form.querySelector('#pages').value,
+							  form.querySelector('#yes').checked,
+							  (form.querySelector('#url') == undefined) ? "" : form.querySelector('#url').value));
+		closeBookForm();
+		updateBookTiles();
+		return;
+	}
+	library[bookNum].title = form.querySelector('#title').value;
+	library[bookNum].author = form.querySelector('#author').value;
+	library[bookNum].pages = form.querySelector('#pages').value;
+	library[bookNum].read = form.querySelector('#yes').checked;
+	library[bookNum].cover = form.querySelector('#url').value;
+	closeBookForm();
+	updateBookTiles();
 }
 
 function demo() {
@@ -120,8 +174,15 @@ function demo() {
 	library.push(new Book("C++ Plus Data Structures", "Nell Dale", 816, false, ""));
 }
 
-// Setup
-document.querySelector('#add-book-button').addEventListener('click', addBookToLibrary);
+function setup() {
+	document.querySelector('#add-book-button').addEventListener('click', addBookToLibrary);
+
+	document.querySelector('#form-cancel').addEventListener('click', closeBookForm);
+	document.querySelector('#form-submit').addEventListener('click', sumbitBookForm);
+	
+}
+
+setup();
 
 demo();
 updateBookTiles();
