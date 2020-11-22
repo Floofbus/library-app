@@ -168,6 +168,13 @@ html, body {
 	background: rgba(25, 25, 50, 1);
 	min-height: 200px;
 	min-width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#footer img {
+	width: 100px;
 }
 
 #card-container {
