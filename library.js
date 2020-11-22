@@ -1,12 +1,11 @@
 let library = [];
 
-function Book(title, author, pages, read, cover = "", category = "") {
+function Book(title, author, pages, read, cover = "") {
 	this.title = title,
 	this.author = author,
 	this.pages = pages,
 	this.read = read,
-	this.cover = cover,
-	this.category = category
+	this.cover = cover
 	}
 
 function addBookToLibrary() {
@@ -69,13 +68,14 @@ function createCardForBook(book, bookId) {
 		card.querySelector('.book-card-read p').textContent = (book.read) ? "Complete" : "Mark as read";
 		if (book.read) card.querySelector('.book-card-read').classList.toggle('book-card-read-complete');
 
-
+		// Finalize with a bookId for later querying
+		card.querySelector('.book-card').setAttribute('data-bookId', bookId);
 
 		return card;
 	}
 	else {
 		// IE specific implementation for templates
-		return document.createElement('p');
+		document.createElement('p');
 	}
 }
 
@@ -93,22 +93,31 @@ function removeBook(event) {
 }
 
 function toggleBookRead(event) {
-	library[event.currentTarget.getAttribute('data-bookId')].read = !library[event.currentTarget.getAttribute('data-bookId')].read;
-	updateBookTiles();
+	let book = library[event.currentTarget.getAttribute('data-bookId')];
+	book.read = !book.read;
+	event.currentTarget.classList.toggle('book-card-read-complete');
+	if (event.currentTarget.querySelector('p').textContent == "Mark as read") {
+		event.currentTarget.querySelector('p').textContent = "Complete";
+	}
+	else {
+		event.currentTarget.querySelector('p').textContent = "Mark as read";
+	}
 }
 
+function openBookForm(bookNum) {
+
+}
 
 function demo() {
 	library.push(new Book("Flowers for Algernon", "Daniel Keyes", 311, true,
-						  "https://images-na.ssl-images-amazon.com/images/I/41gvkhScVBL.jpg", "Sci-fi"));
+						  "https://images-na.ssl-images-amazon.com/images/I/41gvkhScVBL.jpg"));
 	library.push(new Book("Digital Design", "Morris Mano", 516, false,
-						  "https://images-na.ssl-images-amazon.com/images/I/51RX57XZ83L._SX360_BO1,204,203,200_.jpg", "Textbook"));
+						  "https://images-na.ssl-images-amazon.com/images/I/51RX57XZ83L._SX360_BO1,204,203,200_.jpg"));
 	library.push(new Book("Tonal Harmony with an Introduction to Twentieth-Century Music", "Stefan Kostka, Dorothy Payne", 736, false,
-						  "https://images-na.ssl-images-amazon.com/images/I/41b--In4X3L.jpg", "Textbook"));
+						  "https://images-na.ssl-images-amazon.com/images/I/41b--In4X3L.jpg"));
 	library.push(new Book("The Complete Idiot's Guide to Music Composition", "Michael Miller", 264, false,
-						  "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1386924417l/12510.jpg", "Textbook"));
-	library.push(new Book("C++ Plus Data Structures", "Nell Dale", 816, false,
-						  "", "Textbook"));
+						  "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1386924417l/12510.jpg"));
+	library.push(new Book("C++ Plus Data Structures", "Nell Dale", 816, false, ""));
 }
 
 // Setup
