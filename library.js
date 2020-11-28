@@ -1,13 +1,24 @@
 let library = JSON.parse(localStorage.getItem('library') || "[]");
 let formOpen = false;
 
-function Book(title, author, pages, read, cover = "") {
+class Book {
+	constructor(title, author, pages, read, cover = "") {
+		this.title = title;
+		this.author = author;
+		this.pages = pages;
+		this.read = read;
+		this.cover = cover;
+	}
+}
+
+/*function Book(title, author, pages, read, cover = "") {
 	this.title = title,
 	this.author = author,
 	this.pages = pages,
 	this.read = read,
 	this.cover = cover
 	}
+	*/
 
 function addBookToLibrary() {
 	// Display a popup menu to add a book
